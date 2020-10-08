@@ -10,7 +10,7 @@ for an arbitrary list of strings.
 
 # Your name here, and any other people/sources who helped.
 # Give credit where credit is due.
-__author__ = "???"
+__author__ = """Darrell Purcell"""
 
 import sys
 
@@ -27,11 +27,24 @@ def find_anagrams(words):
     Example:
     {'dgo': ['dog'], 'act': ['cat', 'act']}
     """
-    anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+    # anagrams = {
+    #     alphabetize(word): [
+    #         w for w in words
+    #         if alphabetize(w) == alphabetize(word)]
+    #     for word in words}
+    # return anagrams
+
+    anagrams = {}
+    for word in words:
+        word_list = []
+        alpha_word = alphabetize(word)
+        if alpha_word not in anagrams.keys():
+            word_list.append(word)
+            anagrams[alpha_word] = word_list
+        else:
+            word_list = anagrams[alpha_word]
+            word_list.append(word)
+            anagrams[alpha_word] = word_list
     return anagrams
 
 
